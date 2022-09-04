@@ -1,6 +1,6 @@
 ## Blog
 
-Content goes in `/static/content` as markdown files.
+Content goes in `/content` as markdown files.
 
 Supports the following YAML front matter options in content files:
 

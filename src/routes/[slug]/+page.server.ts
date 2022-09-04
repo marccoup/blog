@@ -16,7 +16,7 @@ const renderer = {
 marked.use({ renderer });
 
 export function load({ params }: PageLoad) {
-    const contentPath = "static/content/" + params.slug + ".md";
+    const contentPath = "content/" + params.slug + ".md";
 
     if (fs.existsSync(contentPath)) {
         const md = fs.readFileSync(contentPath).toString();

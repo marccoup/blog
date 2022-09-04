@@ -27,7 +27,7 @@ export function load({ params }: PageLoad) {
     }
 
     posts.sort(function (a, b) {
-        return a.date - b.date
+        return b.date - a.date
     })
 
     return {

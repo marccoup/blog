@@ -31,7 +31,7 @@ export function load({ params }: PageLoad) {
     // })
 
     let posts: Array<object> = [];
-    posts = recurse("'./netlify/functions-internal'", posts);
+    posts = recurse("./.netlify/functions-internal", posts);
 
     return {
         posts: posts

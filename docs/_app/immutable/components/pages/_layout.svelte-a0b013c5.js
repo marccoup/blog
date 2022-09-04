@@ -1,9 +1,0 @@
-import{S as K,i as O,s as Q,B as T,a as F,k as o,q as w,C as U,h as e,c as G,l as i,m as f,r as A,n as y,b as k,D as a,E as W,F as X,G as Y,f as Z,t as x}from"../../chunks/index-3e215a55.js";function tt(m){let u,s,c,r,p,q,C,n,h,D,L,d,S,I,v,z,M,E,b;const B=m[1].default,l=T(B,m,m[0],null);return{c(){u=F(),s=o("header"),c=o("div"),r=o("a"),p=w("Marc Coupland"),q=F(),C=o("p"),n=o("small"),h=o("a"),D=w("twitter"),L=w(`
-            |
-            `),d=o("a"),S=w("github"),I=w(`
-            |
-            `),v=o("a"),z=w("built with"),M=F(),E=o("main"),l&&l.c(),this.h()},l(t){U('[data-svelte="svelte-s3yzrw"]',document.head).forEach(e),u=G(t),s=i(t,"HEADER",{});var g=f(s);c=i(g,"DIV",{});var H=f(c);r=i(H,"A",{href:!0});var N=f(r);p=A(N,"Marc Coupland"),N.forEach(e),H.forEach(e),q=G(g),C=i(g,"P",{});var P=f(C);n=i(P,"SMALL",{});var $=f(n);h=i($,"A",{href:!0,target:!0});var R=f(h);D=A(R,"twitter"),R.forEach(e),L=A($,`
-            |
-            `),d=i($,"A",{href:!0,target:!0});var V=f(d);S=A(V,"github"),V.forEach(e),I=A($,`
-            |
-            `),v=i($,"A",{href:!0});var j=f(v);z=A(j,"built with"),j.forEach(e),$.forEach(e),P.forEach(e),g.forEach(e),M=G(t),E=i(t,"MAIN",{});var J=f(E);l&&l.l(J),J.forEach(e),this.h()},h(){document.title="Marc Coupland",y(r,"href","/"),y(h,"href","https://twitter.com/__marccoup"),y(h,"target","_blank"),y(d,"href","https://github.com/marccoup"),y(d,"target","_blank"),y(v,"href","/built-with")},m(t,_){k(t,u,_),k(t,s,_),a(s,c),a(c,r),a(r,p),a(s,q),a(s,C),a(C,n),a(n,h),a(h,D),a(n,L),a(n,d),a(d,S),a(n,I),a(n,v),a(v,z),k(t,M,_),k(t,E,_),l&&l.m(E,null),b=!0},p(t,[_]){l&&l.p&&(!b||_&1)&&W(l,B,t,t[0],b?Y(B,t[0],_,null):X(t[0]),null)},i(t){b||(Z(l,t),b=!0)},o(t){x(l,t),b=!1},d(t){t&&e(u),t&&e(s),t&&e(M),t&&e(E),l&&l.d(t)}}}function et(m,u,s){let{$$slots:c={},$$scope:r}=u;return m.$$set=p=>{"$$scope"in p&&s(0,r=p.$$scope)},[r,c]}class lt extends K{constructor(u){super(),O(this,u,et,tt,Q,{})}}export{lt as default};

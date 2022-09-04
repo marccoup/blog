@@ -4,7 +4,7 @@
 
 <header>
     <div><a href="/">Marc Coupland</a></div>
-    <p>
+    <nav>
         <small>
             <a href="https://twitter.com/__marccoup" target="_blank">twitter</a>
             |
@@ -12,7 +12,7 @@
             |
             <a href="/built-with">built with</a>
         </small>
-    </p>
+    </nav>
 </header>
 
 <main>

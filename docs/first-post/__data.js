@@ -1,0 +1,1 @@
+window.__sveltekit_data = (function(a,b){return {type:b,nodes:[null,{type:b,data:{title:"First Post",date:"Sun Sep 04 2022",pageContent:"\u003Ch2 id=\"hi\"\u003EHi\u003C\u002Fh2\u003E\n\u003Cp\u003ESo this is a blog post\u003C\u002Fp\u003E\n"},uses:{dependencies:a,params:["slug"],parent:a,url:a}}]}}(void 0,"data"))

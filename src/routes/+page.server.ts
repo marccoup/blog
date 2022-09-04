@@ -4,12 +4,12 @@ import Path from "path"
 import yamlFrontMatter from "yaml-front-matter"
 
 export function load({ params }: PageLoad) {
-    const contentDir = fs.readdirSync("content");
+    const contentDir = fs.readdirSync("static/content/");
 
     let posts = [];
 
     for (let fileName of contentDir) {
-        const filePath = "content/" + fileName
+        const filePath = "static/content/" + fileName
         const file = Path.parse(fileName);
 
         if (file.ext === ".md") {

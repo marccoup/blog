@@ -6,7 +6,7 @@ import yamlFrontMatter from "yaml-front-matter"
 export function load({ params }: PageLoad) {
     // const contentDir = fs.readdirSync("content/");
 
-    const example = fs.readdirSync("./");
+    const example = fs.readdirSync("./.netlify");
 
     let posts = [];
 

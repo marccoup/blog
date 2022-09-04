@@ -1,38 +1,21 @@
-# create-svelte
+## Blog
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Content goes in `/content` as markdown files.
 
-## Creating a project
+Supports the following YAML front matter options in content files:
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+```YAML
+---
+title: My Post/Page Title
+date: 1970-01-01
+exclude_from_blog: false
+---
 ```
 
-## Developing
+The site will be generated from those files, the filenames being their slugs. Doesn't support nested directories (yet).
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+The `title` is self explanatory.
 
-```bash
-npm run dev
+The `date` will be shown as published at on individual pages, and is used to sort the front page posts list in reverse chronological order (latest first).
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Setting `exclude_from_blog` to true will exclude the file from the front page posts list. Useful for other pages (about/contact etc.), or for drafting content (though I'd recommend other strategies to keep drafts off the server but whatever).

@@ -6,10 +6,6 @@ import yamlFrontMatter from "yaml-front-matter"
 export function load({ params }: PageLoad) {
     // const contentDir = fs.readdirSync("content/");
 
-    const example = fs.readdirSync("./.netlify");
-
-    let posts = [];
-
     // for (let fileName of contentDir) {
     //     const filePath = "content/" + fileName
     //     const file = Path.parse(fileName);
@@ -28,19 +24,35 @@ export function load({ params }: PageLoad) {
     //     }
     // }
 
-    for (let fileName of example) {
-        posts.push({
-            title: fileName,
-            date: new Date(),
-            url: '/'
-        })
-    }
+
 
     // posts.sort(function (a, b) {
     //     return b.date - a.date
     // })
 
+    let posts: Array<object> = [];
+    posts = recurse("'./netlify/functions-internal'", posts);
+
     return {
         posts: posts
     }
+}
+
+function recurse(dir: string, posts: Array<object>): Array<object> {
+    let files = fs.readdirSync(dir);
+
+    for (let fileName of files) {
+        let filePath = dir + "/" + fileName;
+        posts.push({
+            title: filePath,
+            date: new Date(),
+            url: '/'
+        })
+
+        if (fs.lstatSync(filePath).isDirectory()) {
+            posts = recurse(filePath, posts);
+        }
+    }
+
+    return posts;
 }

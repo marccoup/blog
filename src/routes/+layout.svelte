@@ -6,7 +6,7 @@
     <div><a href="/">Marc Coupland</a></div>
     <nav>
         <small>
-            <a href="https://twitter.com/__marccoup" target="_blank">twitter</a>
+            <a href="https://twitter.com/_marccoup" target="_blank">twitter</a>
             |
             <a href="https://github.com/marccoup" target="_blank">github</a>
             |

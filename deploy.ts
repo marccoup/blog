@@ -21,16 +21,16 @@ const deploy = async () => {
     }
 
     await build();
-    git.add(".");
+    await git.add(".");
 
     const latestTag: string | undefined = (await git.tags()).latest;
     const newTag: string = generateTag(latestTag);
 
-    git.commit(`build ${newTag}`);
-    git.addTag(newTag);
-    
-    git.push();
-    git.pushTags();
+    await git.commit(`build ${newTag}`);
+    await git.addTag(newTag);
+
+    await git.push();
+    await git.pushTags();
 }
 
 const onValidBranch = (branchData: BranchSummary) => {

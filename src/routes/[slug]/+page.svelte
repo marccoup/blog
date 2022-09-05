@@ -4,6 +4,10 @@
 
 <h1>{data.title}</h1>
 
-<p>Published: {data.date}</p>
+<p style="{data.updated ? "margin-bottom: 0;" : ""}">Published: {data.date}</p>
+
+{#if data.updated}
+    <p>Updated: {data.updated}</p>
+{/if}
 
 {@html data.pageContent}

@@ -24,11 +24,13 @@ export function load({ params }: PageLoad) {
         const html = marked.parse(front.__content);
 
         const date = new Date(Date.parse(front.date));
+        const updated: Date | null = front.updated ? new Date(Date.parse(front.updated)) : null;
 
 
         return {
             title: front.title,
             date: date.toDateString(),
+            updated: updated ? updated.toDateString() : '',
             pageContent: html
         }
     }

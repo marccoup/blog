@@ -3,6 +3,8 @@ title: An Actual Post (AKA The Real First Post)
 date: 2022-09-04
 ---
 
+---
+
 ## Yet another personal site/blog
 
 I build one so frequently it's essentially a habit. I write these "a new site" posts every time too. This is definitely the simplest one yet though, just markdown files used to generate posts. Hopefully it will go well!

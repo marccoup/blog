@@ -8,3 +8,5 @@ node_modules
 !.env.example
 
 deploy.cjs
+
+content/.obsidian

@@ -41,7 +41,7 @@ return [
     'content_dir'           => '/content',
     'static_dir'            => '/static',
     'out_dir'               => '/docs',
-]
+];
 ```
 
 Additionally, specific values may be set for builds run in the local environment:
@@ -56,7 +56,7 @@ return [
             'base_url' => 'http://blog.test'
         ]
     ]
-]
+];
 ```
 
 Support for other environments may be added in the future

@@ -17,7 +17,7 @@ final class Config
     ) {
     }
 
-    public static function load(string $projectRoot, BuildEnvironment $environment = BuildEnvironment::LOCAL): self
+    public static function load(string $projectRoot, BuildEnvironment $environment = BuildEnvironment::PRODUCTION): self
     {
         $config = [
             'site_title'            => 'Website',

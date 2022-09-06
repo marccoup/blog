@@ -63,13 +63,13 @@ Support for other environments may be added in the future
 
 ### Building the site
 
-Run the build with local config:
-
+Run the build with production config:
 ```bash
 ./build
 ```
 
-Run the build with production config:
+Run the build with local config:
+
 ```bash
-./build --env=production
+./build --env=local
 ```

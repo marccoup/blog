@@ -33,10 +33,15 @@
                 
 <h1>Writing a Deploy Script in TypeScript</h1>
 
-<p >
+<p style="margin-bottom: 0">
     Published: 5th September 2022</p>
 
+    <p>Updated: 6th September 2022</p>
 
+<hr />
+<blockquote>
+<p>Update 06/09/2022: A single day after doing this, when attempting to add some new features. I decided to rebuild the entire site in PHP as a custom static site generator. So this site is no longer even deployed with the script discussed in this post. Still a good read though, I think!</p>
+</blockquote>
 <hr />
 <blockquote>
 <p>Disclaimer: This is not a tutorial, I am a PHP Developer, and I haven't worked with TypeScript or Node very much at all.</p>
@@ -46,7 +51,7 @@
 <p>For one reason or another I decided I'd like this blog to be self-sufficient, maybe I'll decommission <code>ok</code> in the future, or maybe I'll want to work on my site somewhere I don't have access to my laptop with all my personal tooling already set up (disregard the fact I'll need to be cloning the repo and installing git for this - that comes with the static site hosted via GitHub pages territory). I'm aware I'll still need node etc. but I'd need that anyway to build the site locally (roll on moving the build step to GitHub actions).</p>
 <h2>The How</h2>
 <p>With TypeScript. Obviously.</p>
-<p><a href="https://github.com/marccoup/blog/blob/main/deploy.ts">Have a look</a></p>
+<p><a href="https://github.com/marccoup/blog/blob/ca1b6ada2cedc23f9dea85590a2c58b5d2f54b34/deploy.ts">Have a look</a></p>
 <p>In all seriousness the most challenging part was running the file through a script defined in the <code>package.json</code> file. Since the script is written in TypeScript you can't do the usual <code>node my-script.ts</code> because node throws an absolute wobbly and refuses to run a TypeScript file (understandable, but I'm still annoyed).</p>
 <p>I soldiered on, trying <code>ts-node</code>, however this bad boy <strong>also</strong> likes to throw a wobbly because of the <code>.ts</code> extension (excuse me wtf?). Turned out to be something to do with the <code>&quot;type&quot;: &quot;module&quot;</code> setting in my package.json - anyway the solution seemed to be <code>ts-node-esm</code>.</p>
 <p>I'll give you one guess as to what <code>ts-node-esm</code> did when trying to run this file? You guessed it - <em>threw an absolutely devastating wobbly</em> - just at a different point in the process, providing me with what one might call a &quot;false sense of hope&quot;. So, the hissy fit occurs when running the build via Vite's impressive <a href="https://vitejs.dev/guide/api-javascript.html">JavaScript API</a> - for some bewildering reason, at the point my <code>vite.config.ts</code> file was being used for the build, <code>ts-node-esm</code> just couldn't find <code>@sveltejs/kit/vite</code> - I was lost. My google-fu lead me to a familiar issue - <code>&quot;type&quot;: &quot;module&quot;</code> - at this point I understood, this little config option was destroying my deploy script's fledgling life, but I needed everything else to continue working exactly as it did before, so, I refused to change it.</p>

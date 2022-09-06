@@ -1,7 +1,12 @@
 ---
 title: Writing a Deploy Script in TypeScript
 date: 2022-09-05
+updated: 2022-09-06
 ---
+
+---
+
+> Update 06/09/2022: A single day after doing this, when attempting to add some new features. I decided to rebuild the entire site in PHP as a custom static site generator. So this site is no longer even deployed with the script discussed in this post. Still a good read though, I think!
 
 ---
 
@@ -16,7 +21,7 @@ For one reason or another I decided I'd like this blog to be self-sufficient, ma
 ## The How
 With TypeScript. Obviously.
 
-[Have a look](https://github.com/marccoup/blog/blob/main/deploy.ts)
+[Have a look](https://github.com/marccoup/blog/blob/ca1b6ada2cedc23f9dea85590a2c58b5d2f54b34/deploy.ts)
 
 In all seriousness the most challenging part was running the file through a script defined in the `package.json` file. Since the script is written in TypeScript you can't do the usual `node my-script.ts` because node throws an absolute wobbly and refuses to run a TypeScript file (understandable, but I'm still annoyed). 
 

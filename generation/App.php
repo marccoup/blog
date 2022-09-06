@@ -3,9 +3,10 @@
 namespace Marccoup\Blog;
 
 use FilesystemIterator;
+use Intervention\Image\ImageManager;
 use SplFileInfo;
 
-class Generator
+class App
 {
     public function __construct(readonly public Config $config)
     {
@@ -28,9 +29,9 @@ class Generator
     public function build(): self
     {
         $this->resetDir($this->config->outDir);
-        $this->copyStatic($this->config->staticDir);
         $this->buildRoutes($this->config->routesDir);
         $this->buildContent($this->config->contentDir);
+        $this->copyStatic($this->config->staticDir);
 
         return $this;
     }
@@ -131,6 +132,12 @@ class Generator
 
             $writeTo     = substr_replace($writeTo, 'html', -strlen($file->getExtension()));
             $contentPage = ContentPage::load($file, $markdownConverter, $this->config);
+
+            $imageManager = new ImageManager([
+                'driver' => 'gd',
+            ]);
+
+            $contentPage->generateAndSaveSocialImage($imageManager);
 
             $this->buildPage($this->config->contentTemplateFile, $writeTo, $contentPage);
         }

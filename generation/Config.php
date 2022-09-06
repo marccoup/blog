@@ -14,6 +14,8 @@ final class Config
         public readonly string $outDir,
         public readonly string $siteTitle,
         public readonly string $baseUrl,
+        public readonly string $imageManagerDriver,
+        public readonly string $imageFontFile
     ) {
     }
 
@@ -28,6 +30,8 @@ final class Config
             'content_dir'           => '/content',
             'static_dir'            => '/static',
             'out_dir'               => '/docs',
+            'image_manager_driver'  => 'gd',
+            'image_font_file'       => '/fonts/Roboto-Medium.ttf',
         ];
         $config = array_merge($config, include $projectRoot.'/config.php');
 
@@ -44,7 +48,9 @@ final class Config
             staticDir: $projectRoot.$config['static_dir'],
             outDir: $projectRoot.$config['out_dir'],
             siteTitle: $config['site_title'],
-            baseUrl: $config['base_url']
+            baseUrl: $config['base_url'],
+            imageManagerDriver: $config['image_manager_driver'],
+            imageFontFile: $config['image_font_file']
         );
     }
 }

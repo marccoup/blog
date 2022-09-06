@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \Marccoup\Blog\Generator $this
+ * @var \Marccoup\Blog\App $this
  * @var \Marccoup\Blog\Page $page
  */
 ?>

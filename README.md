@@ -41,6 +41,8 @@ return [
     'content_dir'           => '/content',
     'static_dir'            => '/static',
     'out_dir'               => '/docs',
+    'image_manager_driver'  => 'gd',
+    'image_font_file'       => null,
 ];
 ```
 

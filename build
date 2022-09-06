@@ -3,9 +3,11 @@
 
 include __DIR__.'/vendor/autoload.php';
 
+use Intervention\Image\ImageManager;
 use Marccoup\Blog\BuildEnvironment;
-use Marccoup\Blog\Generator;
+use Marccoup\Blog\App;
 use Marccoup\Blog\Config;
+use Marccoup\SocialImageGenerator\SocialImageGenerator;
 
 function dd(...$values)
 {
@@ -23,6 +25,6 @@ foreach ($argv as $arg) {
     }
 }
 
-Generator::make(
+App::make(
     Config::load(__DIR__, $buildEnv),
 )->build();

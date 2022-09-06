@@ -3,6 +3,8 @@
 namespace Marccoup\Blog;
 
 use DateTimeImmutable;
+use Intervention\Image\ImageManager;
+use Marccoup\SocialImageGenerator\SocialImageGenerator;
 use SplFileInfo;
 
 class ContentPage
@@ -43,6 +45,29 @@ class ContentPage
         $this->content         = $parsed->getContent();
 
         return $this;
+    }
+
+    public function generateAndSaveSocialImage(ImageManager $manager): void
+    {
+        $titleText  = wordwrap($this->title, 30, PHP_EOL, true);
+        $footerText = str_replace(['https://', 'http://'], '', $this->config->baseUrl);
+
+        $mediaDir = "{$this->config->outDir}/media";
+
+        if (!is_dir($mediaDir)) {
+            mkdir($mediaDir, 0775, true);
+        }
+
+        SocialImageGenerator::make($manager, $this->config->projectRoot.$this->config->imageFontFile)
+                            ->titleText($titleText)
+                            ->footerText($footerText)
+                            ->backgroundColorHex('#f9f9f9')
+                            ->titleTextColorHex('#4a4a4a')
+                            ->footerTextColorHex('#1d7484')
+                            ->borderColorHex('#1d7484')
+                            ->latticeSize(15)
+                            ->generate()
+                            ->save("{$mediaDir}/{$this->slug}.png");
     }
 
     public static function load(SplFileInfo $file, MarkdownConverter $converter, Config $config): self

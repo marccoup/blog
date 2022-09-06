@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+include __DIR__.'/vendor/autoload.php';
+
+use Marccoup\Blog\BuildEnvironment;
+use Marccoup\Blog\Generator;
+use Marccoup\Blog\Config;
+
+function dd(...$values)
+{
+    var_dump(...$values);
+    exit;
+}
+
+$buildEnv = BuildEnvironment::LOCAL;
+foreach ($argv as $arg) {
+    if (str_contains($arg, '--env=')) {
+        $env      = substr_replace($arg, '', 0, strlen('--env='));
+        $buildEnv = BuildEnvironment::tryFrom($env) ?? $buildEnv;
+
+        break;
+    }
+}
+
+Generator::make(
+    Config::load(__DIR__, $buildEnv),
+)->build();

@@ -1,82 +1,63 @@
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="./favicon.png" />
-		<meta name="viewport" content="width=device-width" />
+    <head>
+        <meta charset="utf-8"/>
 
-		<link rel="stylesheet" href="./normalize.css" type="text/css" />
-		<link rel="stylesheet" href="./sakura.css" type="text/css" />
-		<meta http-equiv="content-security-policy" content=""><title>Marc Coupland</title>
-	<link rel="modulepreload" href="./_app/immutable/start-10d51c26.js">
-	<link rel="modulepreload" href="./_app/immutable/chunks/index-3e215a55.js">
-	<link rel="modulepreload" href="./_app/immutable/chunks/singletons-b20cb7be.js">
-	<link rel="modulepreload" href="./_app/immutable/components/pages/_layout.svelte-80b7d0cb.js">
-	<link rel="modulepreload" href="./_app/immutable/modules/pages/_layout.ts-b8ee4d7c.js">
-	<link rel="modulepreload" href="./_app/immutable/chunks/_layout-1daba58d.js">
-	<link rel="modulepreload" href="./_app/immutable/components/pages/_slug_/_page.svelte-c4e48fb6.js">
-	</head>
-	<body>
-		<div>
+        <title>Writing a Deploy Script in TypeScript - Marc Coupland</title>
+        <link rel="icon" href="https://marccoup.uk/favicon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://marccoup.uk/normalize.css" type="text/css"/>
+        <link rel="stylesheet" href="https://marccoup.uk/sakura.css" type="text/css"/>
+
+            <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Marc Coupland">
+    <meta property="og:url" content="https://marccoup.uk/writing-a-deploy-script-in-typescript.html">
+    <meta property="og:title" content="Writing a Deploy Script in TypeScript">    </head>
+    <body>
+        <div>
+            <header>
+                <div><a href="https://marccoup.uk">Marc Coupland</a></div>
+                <nav>
+                    <small>
+                        <a href="https://twitter.com/_marccoup" target="_blank">twitter</a>
+                        |
+                        <a href="https://github.com/marccoup" target="_blank">github</a>
+                        |
+                        <a href="https://marccoup.uk/built-with.html">built with</a>
+                    </small>
+                </nav>
+            </header>
+            <main>
+                
+<h1>Writing a Deploy Script in TypeScript</h1>
+
+<p >
+    Published: 5th September 2022</p>
 
 
-
-
-<header><div><a href="/">Marc Coupland</a></div>
-    <nav><small><a href="https://twitter.com/_marccoup" target="_blank">twitter</a>
-            |
-            <a href="https://github.com/marccoup" target="_blank">github</a>
-            |
-            <a href="/built-with">built with</a></small></nav></header>
-
-<main><h1>Writing a Deploy Script in TypeScript</h1>
-
-<p style="">Published: Mon Sep 05 2022</p>
-
-
-
-<!-- HTML_TAG_START --><hr>
+<hr />
 <blockquote>
-<p>Disclaimer: This is not a tutorial, I am a PHP Developer, and I haven&#39;t worked with TypeScript or Node very much at all.</p>
+<p>Disclaimer: This is not a tutorial, I am a PHP Developer, and I haven't worked with TypeScript or Node very much at all.</p>
 </blockquote>
-<h2 id="the-why">The Why</h2>
-<p>Usually I use a small PHP CLI application I wrote called <code>ok</code> to deploy my projects, it doesn&#39;t do much other than perform a few sanity checks, then create a date based tag for the repo. Usually I have the build process in a GitHub action (or equivalent e.g. BitBucket Pipeline script), but <code>ok</code> will look for a <code>deploy.ok.php</code> file in the root of the project it&#39;s deploying and, if it exists, run that before tagging the repo - pretty useful you know. </p>
-<p>For one reason or another I decided I&#39;d like this blog to be self-sufficient, maybe I&#39;ll decommission <code>ok</code> in the future, or maybe I&#39;ll want to work on my site somewhere I don&#39;t have access to my laptop with all my personal tooling already set up (disregard the fact I&#39;ll need to be cloning the repo and installing git for this - that comes with the static site hosted via GitHub pages territory). I&#39;m aware I&#39;ll still need node etc. but I&#39;d need that anyway to build the site locally (roll on moving the build step to GitHub actions).</p>
-<h2 id="the-how">The How</h2>
+<h2>The Why</h2>
+<p>Usually I use a small PHP CLI application I wrote called <code>ok</code> to deploy my projects, it doesn't do much other than perform a few sanity checks, then create a date based tag for the repo. Usually I have the build process in a GitHub action (or equivalent e.g. BitBucket Pipeline script), but <code>ok</code> will look for a <code>deploy.ok.php</code> file in the root of the project it's deploying and, if it exists, run that before tagging the repo - pretty useful you know.</p>
+<p>For one reason or another I decided I'd like this blog to be self-sufficient, maybe I'll decommission <code>ok</code> in the future, or maybe I'll want to work on my site somewhere I don't have access to my laptop with all my personal tooling already set up (disregard the fact I'll need to be cloning the repo and installing git for this - that comes with the static site hosted via GitHub pages territory). I'm aware I'll still need node etc. but I'd need that anyway to build the site locally (roll on moving the build step to GitHub actions).</p>
+<h2>The How</h2>
 <p>With TypeScript. Obviously.</p>
-<p><a href="https://github.com/marccoup/blog/blob/main/deploy.ts" title="" target="_blank">Have a look</a></p>
-<p>In all seriousness the most challenging part was running the file through a script defined in the <code>package.json</code> file. Since the script is written in TypeScript you can&#39;t do the usual <code>node my-script.ts</code> because node throws an absolute wobbly and refuses to run a TypeScript file (understandable, but I&#39;m still annoyed). </p>
+<p><a href="https://github.com/marccoup/blog/blob/main/deploy.ts">Have a look</a></p>
+<p>In all seriousness the most challenging part was running the file through a script defined in the <code>package.json</code> file. Since the script is written in TypeScript you can't do the usual <code>node my-script.ts</code> because node throws an absolute wobbly and refuses to run a TypeScript file (understandable, but I'm still annoyed).</p>
 <p>I soldiered on, trying <code>ts-node</code>, however this bad boy <strong>also</strong> likes to throw a wobbly because of the <code>.ts</code> extension (excuse me wtf?). Turned out to be something to do with the <code>&quot;type&quot;: &quot;module&quot;</code> setting in my package.json - anyway the solution seemed to be <code>ts-node-esm</code>.</p>
-<p>I&#39;ll give you one guess as to what <code>ts-node-esm</code> did when trying to run this file? You guessed it - <em>threw an absolutely devastating wobbly</em> - just at a different point in the process, providing me with what one might call a &quot;false sense of hope&quot;. So, the hissy fit occurs when running the build via Vite&#39;s impressive <a href="https://vitejs.dev/guide/api-javascript.html" title="" target="_blank">JavaScript API</a> - for some bewildering reason, at the point my <code>vite.config.ts</code> file was being used for the build, <code>ts-node-esm</code> just couldn&#39;t find <code>@sveltejs/kit/vite</code> - I was lost. My google-fu lead me to a familiar issue - <code>&quot;type&quot;: &quot;module&quot;</code> - at this point I understood, this little config option was destroying my deploy script&#39;s fledgling life, but I needed everything else to continue working exactly as it did before, so, I refused to change it.</p>
-<p>At this point I thought that maybe trying to run the TypeScript directly was a lost cause, I&#39;d do what should be done with TypeScript and just compile it to JavaScript first. I try <code>tsc deploy.ts &amp;&amp; node deploy.js</code> and lo-and-behold yet another meltdown about the bloody <code>&quot;type&quot;: &quot;module&quot;</code> config. I was close to giving up, but this time, I was given a useful tip by the error output - something to the effect of:  &quot;Rename the file to <code>deploy.cjs</code> to treat it as common js instead of this stupid module stuff you&#39;ve got going on and obviously don&#39;t understand&quot;. So, I did.</p>
-<p>The final change to the project, making the <code>npm run deploy</code> command do <code>tsc deploy.ts &amp;&amp; mv deploy.js deploy.cjs &amp;&amp; node deploy.cjs</code> - probably terrible practice, probably will break, probably making any half-decent node-savvy developer cry. To be honest, haphazardly changing file extensions and expecting everything to work makes me uncomfortable, I don&#39;t feel like it should work, and I definitely don&#39;t feel like it&#39;s a good idea - but it <em>did</em> work, and that makes it a good idea. So for now, up to until it breaks or I move the build to GitHub actions, this is how it shall remain.</p>
-<h2 id="afterthoughts">Afterthoughts</h2>
-<p>&quot;The Why&quot; section of this post is somewhat short, in hindsight that&#39;s because it really didn&#39;t make much sense to do this. I should have just done it in GitHub actions straight away. Oh well, it was a learning experience and that&#39;s what being a developer is all about - doing things the hard way for no good reason, reinventing the wheel, and then writing it off as a good thing because you <em>learned</em> something.</p>
+<p>I'll give you one guess as to what <code>ts-node-esm</code> did when trying to run this file? You guessed it - <em>threw an absolutely devastating wobbly</em> - just at a different point in the process, providing me with what one might call a &quot;false sense of hope&quot;. So, the hissy fit occurs when running the build via Vite's impressive <a href="https://vitejs.dev/guide/api-javascript.html">JavaScript API</a> - for some bewildering reason, at the point my <code>vite.config.ts</code> file was being used for the build, <code>ts-node-esm</code> just couldn't find <code>@sveltejs/kit/vite</code> - I was lost. My google-fu lead me to a familiar issue - <code>&quot;type&quot;: &quot;module&quot;</code> - at this point I understood, this little config option was destroying my deploy script's fledgling life, but I needed everything else to continue working exactly as it did before, so, I refused to change it.</p>
+<p>At this point I thought that maybe trying to run the TypeScript directly was a lost cause, I'd do what should be done with TypeScript and just compile it to JavaScript first. I try <code>tsc deploy.ts &amp;&amp; node deploy.js</code> and lo-and-behold yet another meltdown about the bloody <code>&quot;type&quot;: &quot;module&quot;</code> config. I was close to giving up, but this time, I was given a useful tip by the error output - something to the effect of:  &quot;Rename the file to <code>deploy.cjs</code> to treat it as common js instead of this stupid module stuff you've got going on and obviously don't understand&quot;. So, I did.</p>
+<p>The final change to the project, making the <code>npm run deploy</code> command do <code>tsc deploy.ts &amp;&amp; mv deploy.js deploy.cjs &amp;&amp; node deploy.cjs</code> - probably terrible practice, probably will break, probably making any half-decent node-savvy developer cry. To be honest, haphazardly changing file extensions and expecting everything to work makes me uncomfortable, I don't feel like it should work, and I definitely don't feel like it's a good idea - but it <em>did</em> work, and that makes it a good idea. So for now, up to until it breaks or I move the build to GitHub actions, this is how it shall remain.</p>
+<h2>Afterthoughts</h2>
+<p>&quot;The Why&quot; section of this post is somewhat short, in hindsight that's because it really didn't make much sense to do this. I should have just done it in GitHub actions straight away. Oh well, it was a learning experience and that's what being a developer is all about - doing things the hard way for no good reason, reinventing the wheel, and then writing it off as a good thing because you <em>learned</em> something.</p>
 <p>Have a good day!</p>
-<p>I hope you enjoy automating something you don&#39;t need to automate when you next get the chance.</p>
+<p>I hope you enjoy automating something you don't need to automate when you next get the chance.</p>
 <p><small>p.s if this makes it to the blog, it was deployed with the script in question via <code>npm run deploy</code></small></p>
-<!-- HTML_TAG_END --></main>
-
-
-		<script type="module" data-sveltekit-hydrate="5t6wie">
-		import { start } from "./_app/immutable/start-10d51c26.js";
-
-		start({
-			env: {},
-			hydrate: {
-				status: 200,
-				error: null,
-				node_ids: [0, 3],
-				params: {slug:"writing-a-deploy-script-in-typescript"},
-				routeId: "[slug]",
-				data: (function(a){return [null,{type:"data",data:{title:"Writing a Deploy Script in TypeScript",date:"Mon Sep 05 2022",updated:"",pageContent:"\u003Chr\u003E\n\u003Cblockquote\u003E\n\u003Cp\u003EDisclaimer: This is not a tutorial, I am a PHP Developer, and I haven&#39;t worked with TypeScript or Node very much at all.\u003C\u002Fp\u003E\n\u003C\u002Fblockquote\u003E\n\u003Ch2 id=\"the-why\"\u003EThe Why\u003C\u002Fh2\u003E\n\u003Cp\u003EUsually I use a small PHP CLI application I wrote called \u003Ccode\u003Eok\u003C\u002Fcode\u003E to deploy my projects, it doesn&#39;t do much other than perform a few sanity checks, then create a date based tag for the repo. Usually I have the build process in a GitHub action (or equivalent e.g. BitBucket Pipeline script), but \u003Ccode\u003Eok\u003C\u002Fcode\u003E will look for a \u003Ccode\u003Edeploy.ok.php\u003C\u002Fcode\u003E file in the root of the project it&#39;s deploying and, if it exists, run that before tagging the repo - pretty useful you know. \u003C\u002Fp\u003E\n\u003Cp\u003EFor one reason or another I decided I&#39;d like this blog to be self-sufficient, maybe I&#39;ll decommission \u003Ccode\u003Eok\u003C\u002Fcode\u003E in the future, or maybe I&#39;ll want to work on my site somewhere I don&#39;t have access to my laptop with all my personal tooling already set up (disregard the fact I&#39;ll need to be cloning the repo and installing git for this - that comes with the static site hosted via GitHub pages territory). I&#39;m aware I&#39;ll still need node etc. but I&#39;d need that anyway to build the site locally (roll on moving the build step to GitHub actions).\u003C\u002Fp\u003E\n\u003Ch2 id=\"the-how\"\u003EThe How\u003C\u002Fh2\u003E\n\u003Cp\u003EWith TypeScript. Obviously.\u003C\u002Fp\u003E\n\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fgithub.com\u002Fmarccoup\u002Fblog\u002Fblob\u002Fmain\u002Fdeploy.ts\" title=\"\" target=\"_blank\"\u003EHave a look\u003C\u002Fa\u003E\u003C\u002Fp\u003E\n\u003Cp\u003EIn all seriousness the most challenging part was running the file through a script defined in the \u003Ccode\u003Epackage.json\u003C\u002Fcode\u003E file. Since the script is written in TypeScript you can&#39;t do the usual \u003Ccode\u003Enode my-script.ts\u003C\u002Fcode\u003E because node throws an absolute wobbly and refuses to run a TypeScript file (understandable, but I&#39;m still annoyed). \u003C\u002Fp\u003E\n\u003Cp\u003EI soldiered on, trying \u003Ccode\u003Ets-node\u003C\u002Fcode\u003E, however this bad boy \u003Cstrong\u003Ealso\u003C\u002Fstrong\u003E likes to throw a wobbly because of the \u003Ccode\u003E.ts\u003C\u002Fcode\u003E extension (excuse me wtf?). Turned out to be something to do with the \u003Ccode\u003E&quot;type&quot;: &quot;module&quot;\u003C\u002Fcode\u003E setting in my package.json - anyway the solution seemed to be \u003Ccode\u003Ets-node-esm\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\n\u003Cp\u003EI&#39;ll give you one guess as to what \u003Ccode\u003Ets-node-esm\u003C\u002Fcode\u003E did when trying to run this file? You guessed it - \u003Cem\u003Ethrew an absolutely devastating wobbly\u003C\u002Fem\u003E - just at a different point in the process, providing me with what one might call a &quot;false sense of hope&quot;. So, the hissy fit occurs when running the build via Vite&#39;s impressive \u003Ca href=\"https:\u002F\u002Fvitejs.dev\u002Fguide\u002Fapi-javascript.html\" title=\"\" target=\"_blank\"\u003EJavaScript API\u003C\u002Fa\u003E - for some bewildering reason, at the point my \u003Ccode\u003Evite.config.ts\u003C\u002Fcode\u003E file was being used for the build, \u003Ccode\u003Ets-node-esm\u003C\u002Fcode\u003E just couldn&#39;t find \u003Ccode\u003E@sveltejs\u002Fkit\u002Fvite\u003C\u002Fcode\u003E - I was lost. My google-fu lead me to a familiar issue - \u003Ccode\u003E&quot;type&quot;: &quot;module&quot;\u003C\u002Fcode\u003E - at this point I understood, this little config option was destroying my deploy script&#39;s fledgling life, but I needed everything else to continue working exactly as it did before, so, I refused to change it.\u003C\u002Fp\u003E\n\u003Cp\u003EAt this point I thought that maybe trying to run the TypeScript directly was a lost cause, I&#39;d do what should be done with TypeScript and just compile it to JavaScript first. I try \u003Ccode\u003Etsc deploy.ts &amp;&amp; node deploy.js\u003C\u002Fcode\u003E and lo-and-behold yet another meltdown about the bloody \u003Ccode\u003E&quot;type&quot;: &quot;module&quot;\u003C\u002Fcode\u003E config. I was close to giving up, but this time, I was given a useful tip by the error output - something to the effect of:  &quot;Rename the file to \u003Ccode\u003Edeploy.cjs\u003C\u002Fcode\u003E to treat it as common js instead of this stupid module stuff you&#39;ve got going on and obviously don&#39;t understand&quot;. So, I did.\u003C\u002Fp\u003E\n\u003Cp\u003EThe final change to the project, making the \u003Ccode\u003Enpm run deploy\u003C\u002Fcode\u003E command do \u003Ccode\u003Etsc deploy.ts &amp;&amp; mv deploy.js deploy.cjs &amp;&amp; node deploy.cjs\u003C\u002Fcode\u003E - probably terrible practice, probably will break, probably making any half-decent node-savvy developer cry. To be honest, haphazardly changing file extensions and expecting everything to work makes me uncomfortable, I don&#39;t feel like it should work, and I definitely don&#39;t feel like it&#39;s a good idea - but it \u003Cem\u003Edid\u003C\u002Fem\u003E work, and that makes it a good idea. So for now, up to until it breaks or I move the build to GitHub actions, this is how it shall remain.\u003C\u002Fp\u003E\n\u003Ch2 id=\"afterthoughts\"\u003EAfterthoughts\u003C\u002Fh2\u003E\n\u003Cp\u003E&quot;The Why&quot; section of this post is somewhat short, in hindsight that&#39;s because it really didn&#39;t make much sense to do this. I should have just done it in GitHub actions straight away. Oh well, it was a learning experience and that&#39;s what being a developer is all about - doing things the hard way for no good reason, reinventing the wheel, and then writing it off as a good thing because you \u003Cem\u003Elearned\u003C\u002Fem\u003E something.\u003C\u002Fp\u003E\n\u003Cp\u003EHave a good day!\u003C\u002Fp\u003E\n\u003Cp\u003EI hope you enjoy automating something you don&#39;t need to automate when you next get the chance.\u003C\u002Fp\u003E\n\u003Cp\u003E\u003Csmall\u003Ep.s if this makes it to the blog, it was deployed with the script in question via \u003Ccode\u003Enpm run deploy\u003C\u002Fcode\u003E\u003C\u002Fsmall\u003E\u003C\u002Fp\u003E\n"},uses:{dependencies:a,params:["slug"],parent:a,url:a}}]}(void 0)),
-				errors: null
-			},
-			paths: {"base":"","assets":""},
-			target: document.querySelector('[data-sveltekit-hydrate="5t6wie"]').parentNode,
-			trailing_slash: "never"
-		});
-	</script>
-	</div>
-	</body>
+            </main>
+        </div>
+    </body>
 </html>

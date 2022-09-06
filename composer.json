@@ -1,0 +1,19 @@
+{
+  "name": "marccoup/blog",
+  "autoload": {
+    "psr-4": {
+      "Marccoup\\Blog\\": "generation"
+    }
+  },
+  "authors": [
+    {
+      "name": "Marc Coupland",
+      "email": "marc@marccoup.uk"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "league/commonmark": "^2.3",
+    "symfony/yaml": "^6.1"
+  }
+}

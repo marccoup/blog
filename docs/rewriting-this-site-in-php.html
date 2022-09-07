@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+
+        <title>Rewriting This Site in PHP - Marc Coupland</title>
+        <link rel="icon" href="https://marccoup.uk/favicon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://marccoup.uk/normalize.css" type="text/css"/>
+        <link rel="stylesheet" href="https://marccoup.uk/sakura.css" type="text/css"/>
+
+            <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Marc Coupland">
+    <meta property="og:url" content="https://marccoup.uk/rewriting-this-site-in-php.html">
+    <meta property="og:image" content="https://marccoup.uk/media/rewriting-this-site-in-php.png">
+    <meta property="og:title" content="Rewriting This Site in PHP">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@_marccoup">
+    <meta name="twitter:image" content="https://marccoup.uk/media/rewriting-this-site-in-php.png">    </head>
+    <body>
+        <div>
+            <header>
+                <div><a href="https://marccoup.uk">Marc Coupland</a></div>
+                <nav>
+                    <small>
+                        <a href="https://twitter.com/_marccoup" target="_blank">twitter</a>
+                        |
+                        <a href="https://github.com/marccoup" target="_blank">github</a>
+                        |
+                        <a href="https://marccoup.uk/built-with.html">built with</a>
+                    </small>
+                </nav>
+            </header>
+            <main>
+                
+<h1>Rewriting This Site in PHP</h1>
+
+<p >
+    Published: 7th September 2022</p>
+
+
+<hr />
+<p>So I gave up on Svelte and TypeScript even though they're great. I just kept missing PHP and my familiarity with it - adding a new feature in the old setup of this site was just a pain for me, and I quickly got over the hype of using something new, and wanted to return to what I know, where I can actually implement things in a reasonable amount of time.</p>
+<p>It took me less time to build a whole static site generator in PHP for this site than it did for me to<a href="/writing-a-deploy-script-in-typescript.html">write a deploy script in TypeScript</a> in the old set up. Navigating the tooling for node felt so foreign, I missed the simplicity of a bare bones PHP script.</p>
+<h2>The Why</h2>
+<p>Well, the little intro above gives a good amount of insight into that but the primary trigger was when I wanted to implement a <a href="https://github.com/marccoup/social-image-generator">social image generator</a> to automatically generate open graph images for my blog posts. The problem was, I couldn't seem to get them to generate at the right time for the build process, and there didn't seem to be a straightforward way to set a script to run prior to everything else (other than adding it manually at the start of every item in the <code>package.json</code> script, but then you have the issue of it not actually being triggered by the Vite build process). Generating the images at the same time as the site's html files were being generated didn't work, as SvelteKit would check for images referenced in the pages, before the script generating the page content (and as such, images) was being executed and throw up an error. I did spend some time trying to figure out how the build process worked and to try and hoodwink the system into including the images at the right time, but alas I decided it would be easier to just start from scratch, and my own static site generator in PHP.</p>
+<p>I did manage to get something kind-of working, with the aforementioned strategy of running a separate script before the build step, but there was another issue. This one really frustrated me, in the SvelteKit setup I had there didn't seem to be a way to set a base URL for the site, to prepend to referenced files (or links) during a production build process. There is a base config option, but that's only allowed to be a path. Most annoyingly, the base option seems to be able to be a URL in Vite, but the SvelteKit override prevents that. The most mind-boggling was that for link tags in the &lt;head&gt; of a page, the href seemed to be getting prepended with the URL of the current session (as in it would be &quot;./file.png&quot; in the .html file, but when visiting the site it would be &quot;https://current-site.example/file.png&quot;) - attempting this in other tags seemed to have no affect, I could find no reference to how this was done in the docs, and going through the uglified js of the generated site yielded a grand total on zero results for me. There were a few other things related to this that seemed strange to me (in that I thought they should work in a different way), but for now I can't be bothered to go into all the details. Perhaps one day I'll speak to a Svelte developer and they can enlighten me.</p>
+<p>It's worth mentioning that, at this time, SvelteKit is in early development and many things may change before they hit version 1.0. I shouldn't be too harsh, as it is by their own description an unfinished project, and I have by my own admission a poor understanding of Svelte, SvelteKit, Node, and TypeScript. This is why I decided it was best to return to my roots, and get going on this rebuild in PHP. No more doing it the hard way for no reason, and writing it off as a good thing because I learned something.</p>
+<h2>The How</h2>
+<p>With PHP. Obviously.</p>
+<p><a href="https://github.com/marccoup/blog">Have a look</a></p>
+            </main>
+        </div>
+    </body>
+</html>

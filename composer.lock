@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb7c6adea429d1fa4d7b6fbcdbd96ae7",
+    "content-hash": "fa0dd5cddd47321d03ba1160542eba71",
     "packages": [
         {
             "name": "dflydev/dot-access-data",
@@ -474,16 +474,16 @@
         },
         {
             "name": "marccoup/social-image-generator",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/marccoup/social-image-generator.git",
-                "reference": "a029b7e48a941968e60423828ea36b0689460fc0"
+                "reference": "63dc03a48dae6dcbd8ce9e900d39c80d4890a918"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/marccoup/social-image-generator/zipball/a029b7e48a941968e60423828ea36b0689460fc0",
-                "reference": "a029b7e48a941968e60423828ea36b0689460fc0",
+                "url": "https://api.github.com/repos/marccoup/social-image-generator/zipball/63dc03a48dae6dcbd8ce9e900d39c80d4890a918",
+                "reference": "63dc03a48dae6dcbd8ce9e900d39c80d4890a918",
                 "shasum": ""
             },
             "require": {
@@ -517,9 +517,9 @@
             ],
             "support": {
                 "issues": "https://github.com/marccoup/social-image-generator/issues",
-                "source": "https://github.com/marccoup/social-image-generator/tree/0.0.1"
+                "source": "https://github.com/marccoup/social-image-generator/tree/0.0.2"
             },
-            "time": "2022-09-06T23:34:11+00:00"
+            "time": "2022-09-07T01:34:27+00:00"
         },
         {
             "name": "nette/schema",

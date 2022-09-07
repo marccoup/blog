@@ -50,7 +50,8 @@ class ContentPage
     public function generateAndSaveSocialImage(ImageManager $manager): void
     {
         $titleText  = wordwrap($this->title, 30, PHP_EOL, true);
-        $footerText = str_replace(['https://', 'http://'], '', $this->config->baseUrl);
+        $footerText = $this->config->siteTitle . PHP_EOL;
+        $footerText .= str_replace(['https://', 'http://'], '', $this->config->baseUrl);
 
         $mediaDir = "{$this->config->outDir}/media";
 
